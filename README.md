@@ -6,10 +6,12 @@ Introduction Welcome to the Blogging Web Application! This application is built 
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text="https://github.com/abhijithca78/Blog-Project/assets/83497961/4e1a4172-34a4-477b-a9cf-42667e933777")
+
+![App Screenshot1](https://github.com/abhijithca78/Blog-Project/assets/83497961/c803ed6e-c07f-4222-91f8-e4e293ca0a08)
 
 
-![App Screenshot](https://ibb.co/sJkf1xh)
+![App Screenshot2](https://github.com/abhijithca78/Blog-Project/assets/83497961/56eb0d0e-f6d0-4523-9d61-215af4b9bb52)
+.co/sJkf1xh)
 
 ## Table of Contents
 
