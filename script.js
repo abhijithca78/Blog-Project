@@ -58,7 +58,7 @@ async function fetchPosts(baseUrl) {
         const updateButtonStyle = isAdmin ? "" : "display:none";
 
         return `
-      <div id="${post.id}" class="post">
+      <div id="${post._id}" class="post">
           <img
             src="${post.imageUrl}"
           />
@@ -78,14 +78,14 @@ async function fetchPosts(baseUrl) {
               : ``
           }
           <div id="admin-buttons">
-            <button class="btn" style="${deleteButtonStyle}" onClick="deletePost('${
+            <button class="btn" style="${deleteButtonStyle}" onclick="deletePost('${
           post._id
         }','${baseUrl}')">Delete</button>
-            <button class="btn" style="${deleteButtonStyle}" onClick="showUpdateForm('${
+            <button class="btn" style="${deleteButtonStyle}" onclick="showUpdateForm('${
           post._id
         }','${post.title}','${post.content}')">Update</button>
           </div>
-          ${index === 0 ? "<hr />" : ""}
+          ${index === 0 ? "<hr>" : ""}
           ${index === 0 ? "<h2>All Articles <h2/>" : ""}
           
         </div>
