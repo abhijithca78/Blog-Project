@@ -11,7 +11,7 @@ Introduction Welcome to the Blogging Web Application! This application is built 
 
 
 ![App Screenshot2](https://github.com/abhijithca78/Blog-Project/assets/83497961/56eb0d0e-f6d0-4523-9d61-215af4b9bb52)
-.co/sJkf1xh)
+
 
 ## Table of Contents
 
