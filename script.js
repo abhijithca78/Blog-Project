@@ -280,8 +280,8 @@ async function registerUser(event, baseUrl) {
 //Login user
 async function loginUser(event, baseUrl) {
   event.preventDefault();
-  const usernameInput = document.getElementById("login-username").value;
-  const passwordInput = document.getElementById("login-password").value;
+  const usernameInput = document.getElementById("login-username");
+  const passwordInput = document.getElementById("login-password");
 
   const username = usernameInput.value;
   const password = passwordInput.value;
