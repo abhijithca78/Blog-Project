@@ -6,7 +6,7 @@ Introduction Welcome to the Blogging Web Application! This application is built 
 
 ## Screenshots
 
-![App Screenshot](https://ibb.co/rFqXHTj)
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
 ![App Screenshot](https://ibb.co/sJkf1xh)
 
