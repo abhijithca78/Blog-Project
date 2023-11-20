@@ -58,8 +58,8 @@ Introduction Welcome to the Blogging Web Application! This application is built 
 
 To run this project, you will need to add the following environment variables to your .env file
 
- `MONGODB_URI=your_mongodb_connection_string`
- `SECRET_KEY=your_secret_key`
+ - `MONGODB_URI=your_mongodb_connection_string`
+ - `SECRET_KEY=your_secret_key`
 
 
 ## Deployment
@@ -81,9 +81,10 @@ Create an account and configure Cyclic with your git account:
 
 ## Usage/Examples
 
-```bash
-  After successful Deployment click on the provided link.
-  Example : https://plum-tasty-capybara.cyclic.app/
+- `After successful Deployment click on the provided link.`
+Deployed Example
+```html
+  https://plum-tasty-capybara.cyclic.app/
 ```
 
 
