@@ -171,7 +171,7 @@ main {
 }
 
 #posts-list img,
-.detail-post-img {
+.detail-post-image {
   width: 90%;
   max-width: 450px;
   height: auto;
@@ -187,7 +187,7 @@ main {
 }
 
 #posts-list > div:first-child img,
-.detail-post-img {
+.detail-post-image {
   width: 100%;
   max-width: 900px;
 }
