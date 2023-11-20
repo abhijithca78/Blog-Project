@@ -1,46 +1,46 @@
 // Client
 
 // Get stored data
-let storedToken = localStorage.getItem("jwtToken");
-let storedUsername = localStorage.getItem("username");
+let storedToken = localStorage.getItem('jwtToken');
+let storedUsername = localStorage.getItem('username');
 
 // Set the username in the HTML
-const usernameElement = document.getElementById("username");
+const usernameElement = document.getElementById('username');
 usernameElement.textContent = storedUsername;
 
 // Load page and event listeners
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   const baseUrl = window.location.origin;
   fetchPosts(baseUrl);
 
   if (storedToken) {
-    const storedRole = localStorage.getItem("userRole");
-    if (storedRole == "admin") {
+    const storedRole = localStorage.getItem('userRole');
+    if (storedRole == 'admin') {
       showAdminFeatures();
     }
   }
 
-  const form = document.getElementById("new-post-form");
+  const form = document.getElementById('new-post-form');
   if (form) {
-    form.addEventListener("submit", (event) => createPost(event, baseUrl));
+    form.addEventListener('submit', (event) => createPost(event, baseUrl));
   }
 
-  const loginForm = document.getElementById("login-form");
-  loginForm.addEventListener("submit", (event) => loginUser(event, baseUrl));
+  const loginForm = document.getElementById('login-form');
+  loginForm.addEventListener('submit', (event) => loginUser(event, baseUrl));
 
-  const registerForm = document.getElementById("register-form");
-  registerForm.addEventListener("submit", (event) =>
+  const registerForm = document.getElementById('register-form');
+  registerForm.addEventListener('submit', (event) =>
     registerUser(event, baseUrl)
   );
 });
 
 // Post details
-const postDetailContainer = document.getElementById("post-detail-container");
+const postDetailContainer = document.getElementById('post-detail-container');
 
 // Add a listener for detail page
-window.addEventListener("load", () => {
+window.addEventListener('load', () => {
   const urlParams = new URLSearchParams(window.location.search);
-  const postId = urlParams.get("post");
+  const postId = urlParams.get('post');
   if (postId) {
     showPostDetail(postId);
   }
@@ -50,14 +50,14 @@ window.addEventListener("load", () => {
 async function fetchPosts(baseUrl) {
   const res = await fetch(`${baseUrl}/posts`);
   const data = await res.json();
-  const postsList = document.getElementById("posts-list");
-  const isAdmin = localStorage.getItem("userRole") === "admin";
+  const postsList = document.getElementById('posts-list');
+  const isAdmin = localStorage.getItem('userRole') === 'admin';
 
   if (postsList) {
     postsList.innerHTML = data
       .map((post, index) => {
-        const deleteButtonStyle = isAdmin ? "" : "display: none";
-        const updateButtonStyle = isAdmin ? "" : "display: none";
+        const deleteButtonStyle = isAdmin ? '' : 'display: none';
+        const updateButtonStyle = isAdmin ? '' : 'display: none';
 
         return `
       <div id="${post._id}" class="post">
@@ -72,7 +72,7 @@ async function fetchPosts(baseUrl) {
           ${
             index === 0
               ? `<span><p>${post.author}</p><p>${post.timestamp}</p></span>`
-              : ""
+              : ''
           }
           <div id="admin-buttons">
             <button class="btn" style="${deleteButtonStyle}" onclick="deletePost('${
@@ -82,20 +82,20 @@ async function fetchPosts(baseUrl) {
           post._id
         }', '${post.title}', '${post.content}')">Update</button>
           </div>
-          ${index === 0 ? "<hr>" : ""}
-          ${index === 0 ? "<h2>All Articles</h2>" : ""}
+          ${index === 0 ? '<hr>' : ''}
+          ${index === 0 ? '<h2>All Articles</h2>' : ''}
         </div>
       `;
       })
-      .join("");
+      .join('');
   }
 }
 
 async function createPost(event, baseUrl) {
   event.preventDefault();
-  const titleInput = document.getElementById("title");
-  const contentInput = document.getElementById("content");
-  const imageUrlInput = document.getElementById("image-url");
+  const titleInput = document.getElementById('title');
+  const contentInput = document.getElementById('content');
+  const imageUrlInput = document.getElementById('image-url');
 
   // Get the values from the input fields
   const title = titleInput.value;
@@ -104,7 +104,7 @@ async function createPost(event, baseUrl) {
 
   // Ensure that inputs are not empty
   if (!title || !content || !imageUrl) {
-    alert("Please fill in all fields 1.");
+    alert('Please fill in all fields 1.');
     return;
   }
 
@@ -114,19 +114,19 @@ async function createPost(event, baseUrl) {
     imageUrl,
     author: storedUsername,
     timestamp: new Date().toLocaleDateString(undefined, {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
     }),
   };
 
   const headers = new Headers({
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
     Authorization: `Bearer ${storedToken}`,
   });
   const requestOptions = {
-    method: "POST",
+    method: 'POST',
     headers: headers,
     body: JSON.stringify(newPost),
   };
@@ -134,18 +134,18 @@ async function createPost(event, baseUrl) {
   try {
     const response = await fetch(`${baseUrl}/posts`, requestOptions);
     if (!response.ok) {
-      const storedRole = localStorage.getItem("userRole");
+      const storedRole = localStorage.getItem('userRole');
       console.error(`Error creating the post: HTTP Status ${response.status}`);
     } else {
       // Clear the input data
-      titleInput.value = "";
-      contentInput.value = "";
-      imageUrlInput.value = "";
-      alert("Create post successful!");
+      titleInput.value = '';
+      contentInput.value = '';
+      imageUrlInput.value = '';
+      alert('Create post successful!');
     }
   } catch (error) {
-    console.error("An errro occured during the fetch:", error);
-    alert("Create post failed.");
+    console.error('An errro occured during the fetch:', error);
+    alert('Create post failed.');
   }
   fetchPosts(baseUrl);
 }
@@ -155,21 +155,21 @@ async function deletePost(postId, baseUrl) {
   const deleteUrl = `${baseUrl}/posts/${postId}`;
   try {
     const response = await fetch(deleteUrl, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
         Authorization: `Bearer ${storedToken}`,
       },
     });
 
     if (response.ok) {
-      alert("Delete post successful!");
+      alert('Delete post successful!');
       fetchPosts(baseUrl);
     } else {
-      alert("Delete post failed.");
+      alert('Delete post failed.');
     }
   } catch (error) {
     console.error(`Error while deleting post: ${error}`);
-    alert("Delete post failed.");
+    alert('Delete post failed.');
   }
 }
 
@@ -186,20 +186,20 @@ function showUpdateForm(postId, title, content) {
   const postElement = document.getElementById(postId);
   postElement.innerHTML += updateForm;
 
-  const form = document.getElementById("update-form");
-  form.addEventListener("submit", (event) => updatePost(event, postId));
+  const form = document.getElementById('update-form');
+  form.addEventListener('submit', (event) => updatePost(event, postId));
 }
 
 // Update post
 async function updatePost(event, postId) {
   event.preventDefault();
-  const title = document.getElementById("update-title").value;
-  const content = document.getElementById("update-content").value;
+  const title = document.getElementById('update-title').value;
+  const content = document.getElementById('update-content').value;
   const baseUrl = window.location.origin;
 
   // ensure that inputs are not empty
   if (!title || !content) {
-    alert("Please fill in all fields 2.");
+    alert('Please fill in all fields 2.');
     return;
   }
 
@@ -210,32 +210,32 @@ async function updatePost(event, postId) {
 
   try {
     const response = await fetch(`${baseUrl}/posts/${postId}`, {
-      method: "PUT",
+      method: 'PUT',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${storedToken}`,
       },
       body: JSON.stringify(updatedPost),
     });
 
     if (response.ok) {
-      alert("Update post successful!");
+      alert('Update post successful!');
       fetchPosts(baseUrl);
     } else {
-      alert("Update post failed.");
+      alert('Update post failed.');
     }
   } catch (error) {
-    console.error("An error occured during the fetch", error);
-    alert("Update post failed.");
+    console.error('An error occured during the fetch', error);
+    alert('Update post failed.');
   }
 }
 
 // Register user
 async function registerUser(event, baseUrl) {
   event.preventDefault();
-  const usernameInput = document.getElementById("register-username");
-  const passwordInput = document.getElementById("register-password");
-  const roleInput = document.getElementById("register-role");
+  const usernameInput = document.getElementById('register-username');
+  const passwordInput = document.getElementById('register-password');
+  const roleInput = document.getElementById('register-role');
 
   const username = usernameInput.value;
   const password = passwordInput.value;
@@ -243,7 +243,7 @@ async function registerUser(event, baseUrl) {
 
   // ensure that inputs are not empty
   if (!username || !password || !role) {
-    alert("Please fill in all fields 3.");
+    alert('Please fill in all fields 3.');
     return;
   }
 
@@ -254,9 +254,9 @@ async function registerUser(event, baseUrl) {
   };
 
   const res = await fetch(`${baseUrl}/register`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(newUser),
   });
@@ -264,26 +264,26 @@ async function registerUser(event, baseUrl) {
   const data = await res.json();
 
   if (data.success) {
-    alert("Registered successful!");
+    alert('Registered successful!');
     // Clear input fields
-    usernameInput.value = "";
-    passwordInput.value = "";
-    roleInput.value = "";
+    usernameInput.value = '';
+    passwordInput.value = '';
+    roleInput.value = '';
   } else {
-    alert("Registration failed.");
+    alert('Registration failed.');
   }
 }
 
 // Loging user
 async function loginUser(event, baseUrl) {
   event.preventDefault();
-  const usernameInput = document.getElementById("login-username");
-  const passwordInput = document.getElementById("login-password");
+  const usernameInput = document.getElementById('login-username');
+  const passwordInput = document.getElementById('login-password');
   const username = usernameInput.value;
   const password = passwordInput.value;
 
   if (!username || !password) {
-    alert("Please fill in all fields 4.");
+    alert('Please fill in all fields 4.');
     return;
   }
 
@@ -293,9 +293,9 @@ async function loginUser(event, baseUrl) {
   };
 
   const res = await fetch(`${baseUrl}/login`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(user),
   });
@@ -303,64 +303,64 @@ async function loginUser(event, baseUrl) {
   const data = await res.json();
 
   if (data.success) {
-    localStorage.setItem("jwtToken", data.token);
-    localStorage.setItem("userRole", data.role);
-    localStorage.setItem("username", username);
+    localStorage.setItem('jwtToken', data.token);
+    localStorage.setItem('userRole', data.role);
+    localStorage.setItem('username', username);
 
     // Close the hamburge menu if open
-    linksContainer.classList.toggle("active");
-    hamburger.classList.toggle("active");
+    linksContainer.classList.toggle('active');
+    hamburger.classList.toggle('active');
 
     // Clear input fields
-    usernameInput.value = "";
-    passwordInput.value = "";
+    usernameInput.value = '';
+    passwordInput.value = '';
 
     location.reload();
 
-    if (data.role === "admin") {
+    if (data.role === 'admin') {
       showAdminFeatures();
     }
   } else {
-    alert("Login failed.");
+    alert('Login failed.');
   }
 }
 
 // Admin features
 function showAdminFeatures() {
-  const newPostDiv = document.getElementById("new-post-div");
+  const newPostDiv = document.getElementById('new-post-div');
   if (newPostDiv) {
-    newPostDiv.style.display = "flex";
+    newPostDiv.style.display = 'flex';
   }
 
-  const allBtns = document.querySelectorAll(".btn");
+  const allBtns = document.querySelectorAll('.btn');
   allBtns.forEach((btn) => {
     if (btn) {
-      btn.style.display = "block";
+      btn.style.display = 'block';
     }
   });
 }
 
 // Logout
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   const baseUrl = window.location.origin;
-  const registerDiv = document.getElementById("register-div");
-  const loginDiv = document.getElementById("login-div");
-  const logoutDiv = document.getElementById("logout-div");
-  const logoutButton = document.getElementById("logout-button");
+  const registerDiv = document.getElementById('register-div');
+  const loginDiv = document.getElementById('login-div');
+  const logoutDiv = document.getElementById('logout-div');
+  const logoutButton = document.getElementById('logout-button');
 
   if (storedToken) {
-    registerDiv.style.display = "none";
-    loginDiv.style.display = "none";
-    logoutDiv.style.display = "flex";
-    logoutButton.addEventListener("click", () => {
-      localStorage.removeItem("jwtToken");
-      localStorage.removeItem("userRole");
-      localStorage.removeItem("username");
+    registerDiv.style.display = 'none';
+    loginDiv.style.display = 'none';
+    logoutDiv.style.display = 'flex';
+    logoutButton.addEventListener('click', () => {
+      localStorage.removeItem('jwtToken');
+      localStorage.removeItem('userRole');
+      localStorage.removeItem('username');
       location.reload();
     });
   } else {
-    registerDiv.style.display = "flex";
-    loginDiv.style.display = "flex";
-    logoutDiv.style.display = "none";
+    registerDiv.style.display = 'flex';
+    loginDiv.style.display = 'flex';
+    logoutDiv.style.display = 'none';
   }
 });
