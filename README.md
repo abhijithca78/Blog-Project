@@ -67,12 +67,11 @@ To run this project, you will need to add the following environment variables to
 To deploy this project
 Create an account and configure Cyclic with your git account:
 
-```bash
-  Cyclic : https://www.cyclic.sh/
+  `Cyclic : https://www.cyclic.sh/
   Add your Repository 
   Add Environment Variables
-  Save and Deploy
-```
+  Save and Deploy`
+
 
 
 ## Usage/Examples
