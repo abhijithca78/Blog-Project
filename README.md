@@ -67,10 +67,8 @@ To run this project, you will need to add the following environment variables to
 To deploy this project
 Create an account and configure Cyclic with your git account:
 
-  Cyclic :
-  ```html
-   https://www.cyclic.sh/
-  ```
+  Cyclic : <a href="https://www.cyclic.sh/">https://www.cyclic.sh/</a>
+  
   - `Add your Repository` 
   
   - `Add Environment Variables`
@@ -83,10 +81,8 @@ Create an account and configure Cyclic with your git account:
 
 - `After successful Deployment click on the provided link.`
   
-## Demo
-```html
-  https://plum-tasty-capybara.cyclic.app/
-```
+## Demo 
+<a href ="https://plum-tasty-capybara.cyclic.app/">https://plum-tasty-capybara.cyclic.app/</a>
 
 
 ## Dependencies
