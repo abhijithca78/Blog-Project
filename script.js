@@ -273,7 +273,7 @@ async function registerUser(event, baseUrl) {
     passwordInput.value = "";
     roleInput.value = "";
   } else {
-    alert("Registration failed.");
+    alert("Registration failed3.");
   }
 }
 
