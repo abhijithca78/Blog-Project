@@ -71,11 +71,11 @@ Create an account and configure Cyclic with your git account:
   ```html
    https://www.cyclic.sh/
   ```
-  `Add your Repository` 
-  ``
-  `Add Environment Variables`
-  ``
-  `Save and Deploy`
+  - `Add your Repository` 
+  
+  - `Add Environment Variables`
+  
+  - `Save and Deploy`
 
 
 
