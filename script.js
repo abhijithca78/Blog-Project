@@ -244,9 +244,9 @@ async function registerUser(event, baseUrl) {
   const password = passwordInput.value;
   const role = roleInput.value;
 
-  //Ensure inputs are not empty
+  // ensure that inputs are not empty
   if (!username || !password || !role) {
-    alert("Please fill in all fields");
+    alert("Please fill in all fields 3.");
     return;
   }
 
@@ -267,8 +267,8 @@ async function registerUser(event, baseUrl) {
   const data = await res.json();
 
   if (data.success) {
-    alert("Registerd successful");
-    //Clear input fileds
+    alert("Registered successful!");
+    // Clear input fields
     usernameInput.value = "";
     passwordInput.value = "";
     roleInput.value = "";
