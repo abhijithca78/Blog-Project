@@ -82,7 +82,8 @@ Create an account and configure Cyclic with your git account:
 ## Usage/Examples
 
 - `After successful Deployment click on the provided link.`
-Deployed Example
+  
+## Demo
 ```html
   https://plum-tasty-capybara.cyclic.app/
 ```
